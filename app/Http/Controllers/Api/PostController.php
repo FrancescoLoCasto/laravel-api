@@ -9,11 +9,18 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public function index() {
-        $posts = Post::all();
+        $posts = Post::paginate(2);
 
         return response()->json([
             'succes' => true,
             'results' => $posts,
+        ]);
+    }
+
+    public function show(Post $post){
+        return response()->json([
+            'succes' => true,
+            'results' => $post,
         ]);
     }
 }
